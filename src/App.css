@@ -1,0 +1,32 @@
+.message {
+  width: 100%;
+  display: flex;
+  gap: 0.75em;
+  align-items: flex-end;
+}
+
+.message-id {
+  position: relative;
+  flex: 0 0 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-id img {
+  transform: scale(1.5);
+}
+
+.message-copy {
+  padding: 0.75em;
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.075);
+  border-radius: 10px;
+}
+
+.message-copy p {
+  color: rgba(255, 255, 255, 0.8);
+}
