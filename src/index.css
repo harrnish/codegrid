@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "am";
+  font-weight: 500;
+  src: url("/fonts/am_r.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "am";
+  font-weight: 700;
+  src: url("/fonts/am_b.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "nm";
+  font-weight: 200;
+  src: url("/fonts/nm_t.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "nm";
+  font-weight: 300;
+  src: url("/fonts/nm_l.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "nm";
+  font-weight: 400;
+  src: url("/fonts/nm_b.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "nm";
+  font-weight: 500;
+  src: url("/fonts/nm_r.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "nm";
+  font-weight: 600;
+  src: url("/fonts/nm_m.otf") format("opentype");
+}
