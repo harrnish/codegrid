@@ -1,49 +1,98 @@
 import React, { useEffect, useRef } from "react";
 import SplitType from "split-type";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 gsap.registerPlugin(CustomEase);
 
 const Header = () => {
   const headerRef = useRef(null);
-  const splitTextRef = useRef(null);
+  const linkRef = useRef(null);
+  const proRef = useRef(null);
+  const dividerRef = useRef(null);
+  const splitTextRef = useRef({ header: null, link: null, pro: null });
   const contextRef = useRef(null);
 
   useEffect(() => {
     contextRef.current = gsap.context(() => {
       const setupSplit = () => {
-        if (splitTextRef.current) {
-          splitTextRef.current.revert();
+        if (splitTextRef.current.header) {
+          splitTextRef.current.header.revert();
+        }
+        if (splitTextRef.current.link) {
+          splitTextRef.current.link.revert();
+        }
+        if (splitTextRef.current.pro) {
+          splitTextRef.current.pro.revert();
         }
 
-        headerRef.current.style.display = "none";
-        headerRef.current.offsetHeight;
-        headerRef.current.style.display = "";
+        [headerRef.current, linkRef.current, proRef.current].forEach(
+          (element) => {
+            element.style.display = "none";
+            element.offsetHeight;
+            element.style.display = "";
+          }
+        );
 
-        splitTextRef.current = new SplitType(headerRef.current, {
+        splitTextRef.current.header = new SplitType(headerRef.current, {
           types: "lines",
           lineClass: "line",
           tagName: "div",
         });
 
-        const lines = headerRef.current.querySelectorAll(".line");
-        lines.forEach((line) => {
-          const textContent = line.textContent;
-          line.innerHTML = `<span>${textContent}</span>`;
+        splitTextRef.current.link = new SplitType(linkRef.current, {
+          types: "lines",
+          lineClass: "line",
+          tagName: "div",
         });
 
-        const spans = headerRef.current.querySelectorAll(".line span");
-        gsap.set(spans, {
+        splitTextRef.current.pro = new SplitType(proRef.current, {
+          types: "lines",
+          lineClass: "line",
+          tagName: "div",
+        });
+
+        // Process all lines (header, link, and pro)
+        const allElements = [
+          headerRef.current,
+          linkRef.current,
+          proRef.current,
+        ];
+        allElements.forEach((element) => {
+          const lines = element.querySelectorAll(".line");
+          lines.forEach((line) => {
+            const textContent = line.textContent;
+            line.innerHTML = `<span>${textContent}</span>`;
+          });
+        });
+
+        const allSpans = document.querySelectorAll(".line span");
+        gsap.set(allSpans, {
           yPercent: 100,
         });
 
-        gsap.to(spans, {
+        gsap.set(dividerRef.current, {
+          clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+        });
+
+        const tl = gsap.timeline({
+          delay: 0.5,
+        });
+
+        tl.to(allSpans, {
           yPercent: 0,
           duration: 1.5,
           stagger: 0.15,
-          delay: 0.5,
           ease: "power4.out",
-        });
+        }).to(
+          dividerRef.current,
+          {
+            clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+            duration: 1.2,
+            ease: "power4.out",
+          },
+          "-=1.2"
+        );
       };
 
       setupSplit();
@@ -58,6 +107,8 @@ const Header = () => {
         });
 
         resizeObserver.observe(headerRef.current);
+        resizeObserver.observe(linkRef.current);
+        resizeObserver.observe(proRef.current);
 
         return () => resizeObserver.disconnect();
       });
@@ -67,18 +118,42 @@ const Header = () => {
       if (contextRef.current) {
         contextRef.current.revert();
       }
-      if (splitTextRef.current) {
-        splitTextRef.current.revert();
+      if (splitTextRef.current.header) {
+        splitTextRef.current.header.revert();
+      }
+      if (splitTextRef.current.link) {
+        splitTextRef.current.link.revert();
+      }
+      if (splitTextRef.current.pro) {
+        splitTextRef.current.pro.revert();
       }
     };
   }, []);
 
   return (
-    <div className="header">
-      <h1 ref={headerRef}>
-        Sharing all the sauce behind building dope interactive experiences and
-        the finest websites that truly stand out.
-      </h1>
+    <div className="app">
+      <div className="header">
+        <h1 ref={headerRef}>
+          Sharing all the sauce behind building dope interactive experiences and
+          the finest websites that truly stand out.
+        </h1>
+      </div>
+
+      <div className="ctas">
+        <div className="subscribe-btn-wrapper">
+          <div className="subscribe-btn">
+            <Link to="https://www.youtube.com/@codegrid">
+              <h1 ref={linkRef}>Subscribe</h1>
+            </Link>
+          </div>
+        </div>
+        <div ref={dividerRef} className="divider"></div>
+        <div className="pro-btn-wrapper">
+          <div className="pro-btn">
+            <h1 ref={proRef}>Get PRO</h1>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
