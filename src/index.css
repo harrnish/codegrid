@@ -130,6 +130,11 @@ h1 {
   text-decoration: none;
   color: var(--color-light);
   will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.pro-btn {
+  cursor: pointer;
 }
 
 .subscribe-btn a h1 .line,
@@ -142,9 +147,13 @@ h1 {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   h1 {
     font-size: 8vw;
     letter-spacing: -0.035em;
+  }
+
+  .ctas {
+    gap: 1.5em;
   }
 }

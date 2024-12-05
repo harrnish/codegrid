@@ -16,6 +16,8 @@ const Header = () => {
   useEffect(() => {
     contextRef.current = gsap.context(() => {
       const setupSplit = () => {
+        gsap.killTweensOf("*");
+
         if (splitTextRef.current.header) {
           splitTextRef.current.header.revert();
         }
@@ -52,7 +54,6 @@ const Header = () => {
           tagName: "div",
         });
 
-        // Process all lines (header, link, and pro)
         const allElements = [
           headerRef.current,
           linkRef.current,
@@ -67,13 +68,16 @@ const Header = () => {
         });
 
         const allSpans = document.querySelectorAll(".line span");
+
         gsap.set(allSpans, {
           yPercent: 100,
         });
 
-        gsap.set(dividerRef.current, {
-          clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-        });
+        if (dividerRef.current) {
+          gsap.set(dividerRef.current, {
+            clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+          });
+        }
 
         const tl = gsap.timeline({
           delay: 0.5,
