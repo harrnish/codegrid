@@ -70,111 +70,38 @@ img {
 }
 
 h1 {
-  color: var(--color-light);
   font-family: "nm";
-  font-size: 4.75rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.15rem;
+  font-size: 5vw;
+  font-weight: 500;
+  line-height: 1.085;
+  letter-spacing: -0.0275em;
   position: relative;
   will-change: transform, opacity;
-}
-
-p.mono,
-a {
-  color: var(--color-light);
-  font-family: "am";
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.0125rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  position: relative;
-  will-change: transform, opacity;
-}
-
-button {
-  width: max-content;
-  outline: none;
-  border: none;
-  font-family: "am";
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.0125rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 0.25rem;
-  color: var(--color-dark);
-  background-color: var(--color-light);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.125rem;
-}
-
-.btn-icon {
-  position: relative;
-  top: 0.035rem;
 }
 
 .header {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
   padding: 1rem;
-  text-align: center;
+  width: 100%;
+}
+
+.header h1 .line {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
   will-change: transform, opacity;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-@media (max-width: 1260px) {
-  .header {
-    width: 60%;
-  }
+.header h1 .line span {
+  position: relative;
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
-@media (max-width: 1080px) {
-  .header {
-    width: 70%;
-  }
-}
-
-@media (max-width: 1080px) {
-  .header {
-    width: 60%;
-  }
-}
-
-@media (max-width: 1040px) {
-  .header {
-    width: 70%;
-  }
-}
-
-@media (max-width: 900px) {
-  .header {
-    width: 75%;
-  }
-
-  h1 {
-    font-size: 3rem;
-    letter-spacing: -0.0125rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .header {
-    width: 90%;
-  }
-
-  h1 {
-    font-size: 2.25rem;
+@media (max-width: 1000px) {
+  .header h1 {
+    font-size: 6vw;
+    letter-spacing: -0.035em;
   }
 }
