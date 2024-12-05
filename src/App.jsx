@@ -153,9 +153,9 @@ const Header = () => {
         </div>
         <div ref={dividerRef} className="divider"></div>
         <div className="pro-btn-wrapper">
-          <div className="pro-btn">
+          <Link to="https://codegrid.gumroad.com/l/codegridpro">
             <h1 ref={proRef}>Get PRO</h1>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

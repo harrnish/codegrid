@@ -125,7 +125,8 @@ h1 {
   transform: rotate(20deg);
 }
 
-.subscribe-btn a {
+.subscribe-btn a,
+.pro-btn-wrapper a {
   position: relative;
   text-decoration: none;
   color: var(--color-light);
@@ -138,7 +139,7 @@ h1 {
 }
 
 .subscribe-btn a h1 .line,
-.pro-btn h1 {
+.pro-btn-wrapper a h1 .line {
   position: relative;
   display: block;
   width: 100%;
